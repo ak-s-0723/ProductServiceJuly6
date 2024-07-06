@@ -6,4 +6,6 @@ public interface IProductService {
     Product getProductById(Long productId);
 
     Product createProduct(Product product);
+
+    Product getProductBasedOnUserScope(Long userId,Long productId);
 }

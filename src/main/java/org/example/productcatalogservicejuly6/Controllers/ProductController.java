@@ -37,6 +37,21 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/{userId}/{productId}")
+    public ProductDto getProductBasedOnUserScope(@PathVariable("userId") Long userId,@PathVariable("productId") Long productId) {
+       try {
+           Product product = productService.getProductBasedOnUserScope(userId, productId);
+           if(product == null) {
+               throw new RuntimeException("Something went wrong");
+           }
+
+           return from(product);
+       }catch (Exception ex) {
+           throw ex;
+       }
+    }
+
+
     @PostMapping
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
         Product product = from(productDto);
